@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>AWS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+
+    <title>Cloud Computing Assignment 3</title>
+  </head>
+  <body>
+   <h1>Cloud Computing Assignment 3</h1>
+   <br/>
+   <h3><a href="/index">Home</a></h3>
+   <br/>
+   {% if result_msg %}
+        <h3>{{ result_msg }}</h3>
+   {% endif %}
+    <h2>List of Files in Amazon S3 Storage</h2>
+    <table>
+       <tr border="5">
+          <th><h3>File Name</h3></th>
+          <th><h3>size#</h3></th>
+          <th><h3>Last Modified</h3></th>
+        </tr>
+        {% for i in files_list %}
+        <form action="/deleteordownload">
+        <tr>
+          <td nowrap>{{ i.name }}</td>
+          <td nowrap>{{ i.size }}</td>
+          <td nowrap>{{ i.last_modified }}</td>
+            <input type="hidden" name="filename" value="{{ i.name }}">
+            <td><input type=submit value="Download" name="operation"></td>
+            <td><input type=submit value="Delete" name="operation"></td>
+            <td><input type=submit value="View" name="operation"></td>
+        </tr>
+</form>
+       {% endfor %}
+    </table>
+  </body>
+
+
+</html>
